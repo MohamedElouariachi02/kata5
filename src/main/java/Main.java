@@ -1,19 +1,13 @@
-import ulpgc.software.Control.RandomGenerateUsers;
-import ulpgc.software.Model.User;
 
-import java.io.IOException;
-import java.util.List;
+import ulpgc.software.Control.Commands.LoadRandomUserInfoSwingCommand;
+import ulpgc.software.Control.Commands.LoadRandomUsersCommand;
+import ulpgc.software.Model.User;
+import ulpgc.software.View.MainFrame;
 
 public class Main {
     public static void main(String[] args) {
-        RandomGenerateUsers randomGenerateUsers = new RandomGenerateUsers(1);
-        try {
-            List<User> generate = randomGenerateUsers.generate();
-            for (User user : generate) {
-                System.out.println(user);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.put("generar", new LoadRandomUserInfoSwingCommand(mainFrame.getInfo(), mainFrame.getImage()));
+        mainFrame.setVisible(true);
     }
 }
